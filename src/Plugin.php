@@ -6,35 +6,37 @@ use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\Factory;
 use Illuminate\View\FileViewFinder;
 use Orchestra\Testbench\Concerns\CreatesApplication;
+use Psalm\LaravelPlugin\ReturnTypeProvider\AuthReturnTypeProvider;
+use Psalm\LaravelPlugin\ReturnTypeProvider\TransReturnTypeProvider;
+use Psalm\LaravelPlugin\ReturnTypeProvider\ViewReturnTypeProvider;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
 use SimpleXMLElement;
 
-class Plugin extends AbstractPlugin implements PluginEntryPointInterface
+class Plugin implements PluginEntryPointInterface
 {
     use CreatesApplication;
-    
+
     /**
-     * Get and load ide provider for  Laravel Application container
-     *
-     * @param \Illuminate\Container\Container $app
-     * @param string $ide_helper_provider
-     * @return \Illuminate\Contracts\Foundation\Application|\Laravel\Lumen\Application|\Illuminate\Container\Container
+     * @return void
      */
-    public  function loadIdeProvider($app, $ide_helper_provider){
-        if ($app instanceof \Illuminate\Contracts\Foundation\Application) {
-            /** @var \Illuminate\Contracts\Http\Kernel $kernel */
-            $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
-            $kernel->bootstrap();
+    public function __invoke(RegistrationInterface $registration, ?SimpleXMLElement $config = null)
+    {
 
-            // If we're running a Laravel container, let's see if we need to register the IDE helper if it isn't
-            // already. If we don't do this, the plugin will crash out because the IDE helper doesn't have configs
-            // it bootstraps present in the app container.
-
-            if (!$app->getProvider($ide_helper_provider)) {
-                $app->register($ide_helper_provider);
-            }
-        }
-        return $app;
+        require_once 'ReturnTypeProvider/AuthReturnTypeProvider.php';
+        $registration->registerHooksFromClass(ReturnTypeProvider\AuthReturnTypeProvider::class);
+        require_once 'ReturnTypeProvider/TransReturnTypeProvider.php';
+        $registration->registerHooksFromClass(ReturnTypeProvider\TransReturnTypeProvider::class);
+        require_once 'ReturnTypeProvider/ViewReturnTypeProvider.php';
+        $registration->registerHooksFromClass(ReturnTypeProvider\ViewReturnTypeProvider::class);
+        require_once 'AppInterfaceProvider.php';
+        $registration->registerHooksFromClass(AppInterfaceProvider::class);
+    }
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     */
+    protected function getEnvironmentSetUp($app): void
+    {
+        // ..
     }
 }
