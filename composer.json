@@ -4,7 +4,7 @@
     "type": "psalm-plugin",
     "require": {
         "laravel/lumen-framework": "5.7.*",
-        "vimeo/psalm": "^3.2",
+        "vimeo/psalm": "^3.2"
     },
     "license": "MIT",
     "authors": [
