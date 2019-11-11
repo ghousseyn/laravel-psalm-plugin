@@ -18,7 +18,8 @@ class AppInterfaceProvider implements
     {
         return [
             \Illuminate\Contracts\Foundation\Application::class,
-            \Illuminate\Contracts\Container\Container::class
+            \Illuminate\Contracts\Container\Container::class,
+            Illuminate\Foundation\Application::class
         ];
     }
 
