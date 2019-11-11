@@ -1,7 +1,6 @@
 <?php
 namespace Psalm\LumenPlugin;
 
-use Orchestra\Testbench\Concerns\CreatesApplication;
 use Psalm\LaravelPlugin\ReturnTypeProvider\AuthReturnTypeProvider;
 use Psalm\LaravelPlugin\ReturnTypeProvider\TransReturnTypeProvider;
 use Psalm\LaravelPlugin\ReturnTypeProvider\ViewReturnTypeProvider;
@@ -11,8 +10,6 @@ use SimpleXMLElement;
 
 class Plugin implements PluginEntryPointInterface
 {
-    use CreatesApplication;
-
     /**
      * @return void
      */
