@@ -12,14 +12,21 @@ class AppInterfaceProvider implements
     \Psalm\Plugin\Hook\MethodReturnTypeProviderInterface,
     \Psalm\Plugin\Hook\MethodExistenceProviderInterface,
     \Psalm\Plugin\Hook\MethodVisibilityProviderInterface,
-    \Psalm\Plugin\Hook\MethodParamsProviderInterface
+    \Psalm\Plugin\Hook\MethodParamsProviderInterface,
+    \Psalm\Plugin\Hook\PropertyTypeProviderInterface
 {
+    public static function getPropertyType(string $fq_classlike_name, string $property_name, bool $read_mode, StatementsSource $source = null, Context $context = null)
+    {
+        if (preg_match('/^Illuminate/i', $fq_classlike_name) && $property_name === 'app') {
+            return \Laravel\Lumen\Application::class;
+        }
+    }
+
     public static function getClassLikeNames() : array
     {
         return [
             \Illuminate\Contracts\Foundation\Application::class,
             \Illuminate\Contracts\Container\Container::class,
-            \Illuminate\Foundation\Application::class
         ];
     }
 
