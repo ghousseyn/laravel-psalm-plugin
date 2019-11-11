@@ -70,7 +70,7 @@ class AppInterfaceProvider implements
         if ($statements_source) {
             if ($method_name_lowercase === 'offsetget' || $method_name_lowercase === 'offsetset') {
                 return $statements_source->getCodebase()->getMethodParams(
-                    \Illuminate\Foundation\Application::class . '::' . $method_name_lowercase
+                    \Laravel\Lumen\Application::class . '::' . $method_name_lowercase
                 );
             }
         }
@@ -94,7 +94,7 @@ class AppInterfaceProvider implements
         if ($source) {
             if ($method_name_lowercase === 'offsetget' || $method_name_lowercase === 'offsetset') {
                 return $source->getCodebase()->getMethodReturnType(
-                    \Illuminate\Foundation\Application::class . '::' . $method_name_lowercase,
+                    \Laravel\Lumen\Application::class . '::' . $method_name_lowercase,
                     $fq_classlike_name
                 );
             }

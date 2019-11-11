@@ -1,27 +1,30 @@
 {
-    "name": "psalm/plugin-laravel",
-    "description": "A Laravel plugin for Psalm",
+    "name": "psalm/plugin-lumen",
+    "description": "A Lumen plugin for Psalm",
     "type": "psalm-plugin",
     "require": {
-        "barryvdh/laravel-ide-helper": "^2.6",
+        "laravel/lumen-framework": "5.7.*",
         "vimeo/psalm": "^3.2",
-        "orchestra/testbench": "^3.5"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Matthew Brown",
             "email": "github@muglug.com"
+        },
+        {
+            "name": "Housseyn Guettaf",
+            "email": "ghoucine@gmail.com"
         }
     ],
     "extra": {
         "psalm": {
-            "pluginClass": "Psalm\\LaravelPlugin\\Plugin"
+            "pluginClass": "Psalm\\LumenPlugin\\Plugin"
         }
     },
     "autoload": {
         "psr-4": {
-            "Psalm\\LaravelPlugin\\": "src"
+            "Psalm\\LumenPlugin\\": "src"
         }
     },
     "scripts" : {

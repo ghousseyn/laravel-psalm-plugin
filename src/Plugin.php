@@ -1,10 +1,6 @@
 <?php
 namespace Psalm\LaravelPlugin;
 
-use Illuminate\View\Engines\EngineResolver;
-use Illuminate\View\Engines\PhpEngine;
-use Illuminate\View\Factory;
-use Illuminate\View\FileViewFinder;
 use Orchestra\Testbench\Concerns\CreatesApplication;
 use Psalm\LaravelPlugin\ReturnTypeProvider\AuthReturnTypeProvider;
 use Psalm\LaravelPlugin\ReturnTypeProvider\TransReturnTypeProvider;
@@ -22,13 +18,12 @@ class Plugin implements PluginEntryPointInterface
      */
     public function __invoke(RegistrationInterface $registration, ?SimpleXMLElement $config = null)
     {
-
         require_once 'ReturnTypeProvider/AuthReturnTypeProvider.php';
-        $registration->registerHooksFromClass(ReturnTypeProvider\AuthReturnTypeProvider::class);
+        $registration->registerHooksFromClass(AuthReturnTypeProvider::class);
         require_once 'ReturnTypeProvider/TransReturnTypeProvider.php';
-        $registration->registerHooksFromClass(ReturnTypeProvider\TransReturnTypeProvider::class);
+        $registration->registerHooksFromClass(TransReturnTypeProvider::class);
         require_once 'ReturnTypeProvider/ViewReturnTypeProvider.php';
-        $registration->registerHooksFromClass(ReturnTypeProvider\ViewReturnTypeProvider::class);
+        $registration->registerHooksFromClass(ViewReturnTypeProvider::class);
         require_once 'AppInterfaceProvider.php';
         $registration->registerHooksFromClass(AppInterfaceProvider::class);
     }
