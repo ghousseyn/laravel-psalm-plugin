@@ -1,6 +1,6 @@
 <?php
 
-namespace Psalm\LaravelPlugin;
+namespace Psalm\LumenPlugin;
 
 use PhpParser;
 use Psalm\Context;
