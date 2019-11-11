@@ -1,5 +1,5 @@
 <?php
-namespace Psalm\LaravelPlugin;
+namespace Psalm\LumenPlugin;
 
 use Orchestra\Testbench\Concerns\CreatesApplication;
 use Psalm\LaravelPlugin\ReturnTypeProvider\AuthReturnTypeProvider;

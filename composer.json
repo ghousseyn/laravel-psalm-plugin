@@ -1,5 +1,5 @@
 {
-    "name": "psalm/plugin-lumen",
+    "name": "ghousseyn/plugin-lumen",
     "description": "A Lumen plugin for Psalm",
     "type": "psalm-plugin",
     "require": {

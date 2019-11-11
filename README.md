@@ -6,8 +6,8 @@ A Psalm plugin for Lumen
 First [install Psalm](https://psalm.dev/quickstart) in your project, making sure to run `--init`, then run the following commands:
 
 ```
-composer require --dev psalm/plugin-lumen
-vendor/bin/psalm-plugin enable psalm/plugin-lumen
+composer require --dev ghousseyn/plugin-lumen
+vendor/bin/psalm-plugin enable ghousseyn/plugin-lumen
 ```
 
 ## Based on 
